@@ -718,17 +718,83 @@ to whiteCastle
         set rightWhiteRook true]]]
 end
 
+to blackCastle
+  let king? false
+  let leftRook? false
+  let RightRook? false
+  let check1 false
+  let check2 false
+  let check3 false
+  let check4 false
+  let check5 false
+
+  ask kings with [team = "black"] [
+    if movedyet? != true [
+      set king? true]]
+  ask rook 18 [
+    if movedyet? != true [
+      set leftRook? true]]
+  ask rook 19 [
+    if movedyet? != true [
+      set rightRook? true]]
+
+  if king? and leftRook? [
+    ask patch 1 7 [
+      if count turtles-here = 0 [
+        set check1 true]]
+    ask patch 2 7 [
+      if count turtles-here = 0 [
+        set check2 true]]
+    if check1 and check2 [
+      ask patch 1 7 [
+        set pcolor green
+        set leftBlackRook true]]]
+
+  if king? and rightRook? [
+    ask patch 4 7 [
+      if count turtles-here = 0 [
+        set check3 true]]
+    ask patch 5 7 [
+      if count turtles-here = 0 [
+        set check4 true]]
+    ask patch 6 7 [
+      if count turtles-here = 0 [
+        set check5 true]]
+    if check3 and check4 and check5 [
+      ask patch 6 7 [
+        set pcolor green
+        set rightBlackRook true]]]
+end
+
 to executeCastle
   if rightWhiteRook = true and round mouse-xcor = 6 and round mouse-ycor = 0 and mouse-down?[
     ask rook 17 [
       setxy 5 0]
     set rightWhiteRook false
-    set leftWhiteRook false]
+    set leftWhiteRook false
+    set rightBlackRook false
+    set leftBlackRook false]
   if leftWhiteRook = true and round mouse-xcor = 1 and round mouse-ycor = 0 and mouse-down?[
     ask rook 16 [
       setxy 2 0]
     set rightWhiteRook false
-    set leftWhiteRook false]
+    set leftWhiteRook false
+    set rightBlackRook false
+    set leftBlackRook false]
+  if rightBlackRook = true and round mouse-xcor = 6 and round mouse-ycor = 7 and mouse-down?[
+    ask rook 19 [
+      setxy 5 7]
+    set rightWhiteRook false
+    set leftWhiteRook false
+    set rightBlackRook false
+    set leftBlackRook false]
+  if leftBlackRook = true and round mouse-xcor = 1 and round mouse-ycor = 7 and mouse-down?[
+    ask rook 18 [
+      setxy 2 7]
+    set rightWhiteRook false
+    set leftWhiteRook false
+    set rightBlackRook false
+    set leftBlackRook false]
 end
 
 to-report whiteseconds

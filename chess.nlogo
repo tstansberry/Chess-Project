@@ -57,6 +57,9 @@ to setup
       set team "black"]
     if color = 49 [
       set team "white"]]
+  ;timer
+  set timerwhite playtime * 60
+  set timerblack playtime * 60
 end
 
 ;SELECTING THE PIECES
@@ -643,7 +646,10 @@ to executeMove
       deselectAllPieces
       executeCastle
       executeEnPassent
-      increaseTurn]]
+      increaseTurn
+    ifelse setMove = "white"
+    [set timerblack timerblack + increment]
+    [set timerwhite timerwhite + increment]]]
   pawnPromotion
 end
 

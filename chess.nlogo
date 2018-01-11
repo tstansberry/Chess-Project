@@ -1,6 +1,6 @@
-turtles-own [team movedyet? piecename selected?]
+turtles-own [team movedyet? piecename selected? timesMoved]
 patches-own [original-color]
-globals [numberSelected turn ahead? green? rightWhiteRook leftWhiteRook timerwhite timerblack]
+globals [numberSelected turn ahead? green? rightWhiteRook leftWhiteRook rightBlackRook leftBlackRook timerwhite timerblack leftWhiteEnPassent rightWhiteEnPassent leftBlackEnPassent rightBlackEnPassent]
 breed [pawns pawn]
 breed [rooks rook]
 breed [knights knight]
@@ -102,7 +102,9 @@ end
 to calculateMoves
   if breed = pawns [
     calculateWhitePawnMove
-    calculateBlackPawnMove]
+    calculateBlackPawnMove
+    enPassentWhite
+    enPassentBlack]
   if breed = knights [
     calculateWhiteKnightMove
     calculateBlackKnightMove]
@@ -115,7 +117,8 @@ to calculateMoves
   if breed = kings [
     calculateWhiteKingMove
     calculateBlackKingMove
-    whiteCastle]
+    whiteCastle
+    blackCastle]
   if breed = queens [
     calculateWhiteQueenMove
     calculateBlackQueenMove]
@@ -635,9 +638,11 @@ to executeMove
     if green? = true [
       ask turtles with [selected? = true] [
         setxy x y
-        set movedyet? true]
+        set movedyet? true
+        set timesMoved timesMoved + 1]
       deselectAllPieces
       executeCastle
+      executeEnPassent
       increaseTurn]]
   pawnPromotion
 end
@@ -841,6 +846,54 @@ to pawnpromotion
     if Promotion-Type = "promote-to-rook" [
       set breed rooks]]
 end
+
+to enPassentBlack
+  ask pawns with [team = "black" and ycor = 3] [
+    ask patch ([xcor] of self - 1) ([ycor] of self) [
+      if count pawns-here with [team = "white" and timesMoved = 1] = 1[
+        ask patch([pxcor] of self) ([pycor] of self - 1) [
+          set leftBlackEnPassent true
+          set pcolor green]]]
+    ask patch ([xcor] of self + 1) ([ycor] of self) [
+      if count pawns-here with [team = "white" and timesMoved = 1] = 1[
+        ask patch([pxcor] of self) ([pycor] of self - 1) [
+          set rightBlackEnPassent true
+          set pcolor green]]]]
+end
+
+to enPassentWhite
+  ask pawns with [team = "white" and ycor = 4] [
+    ask patch ([xcor] of self - 1) ([ycor] of self) [
+      if count pawns-here with [team = "black" and timesMoved = 1] = 1[
+        ask patch([pxcor] of self) ([pycor] of self + 1) [
+          set leftWhiteEnPassent true
+          set pcolor green]]]
+    ask patch ([xcor] of self + 1) ([ycor] of self) [
+      if count pawns-here with [team = "black" and timesMoved = 1] = 1[
+        ask patch([pxcor] of self) ([pycor] of self + 1) [
+          set rightWhiteEnPassent true
+          set pcolor green]]]]
+end
+
+to executeEnPassent
+  if leftWhiteEnPassent = true and round mouse-xcor = ([xcor] of pawns with [selected? = true]) - 1 and round mouse-ycor = ([ycor] of pawns with [selected? = true]) - 1 and mouse-down? [
+    ask pawns with [team = "black" and xcor = ([xcor] of pawns with [selected? = true]) - 1 and ycor = ([ycor] of pawns with [selected? = true])] [
+      die
+      set leftWhiteEnPassent false]]
+  if rightWhiteEnPassent = true and round mouse-xcor = ([xcor] of pawns with [selected? = true]) + 1 and round mouse-ycor = ([ycor] of pawns with [selected? = true]) + 1 and mouse-down? [
+    ask pawns with [team = "black" and xcor = ([xcor] of pawns with [selected? = true]) + 1 and ycor = ([ycor] of pawns with [selected? = true])] [
+      die
+      set rightWhiteEnPassent false]]
+  if leftBlackEnPassent = true and round mouse-xcor = ([xcor] of pawns with [selected? = true]) - 1 and round mouse-ycor = ([ycor] of pawns with [selected? = true]) - 1 and mouse-down? [
+    ask pawns with [team = "white" and xcor = ([xcor] of pawns with [selected? = true]) - 1 and ycor = ([ycor] of pawns with [selected? = true])] [
+      die
+      set leftBlackEnPassent false]]
+  if rightBlackEnPassent = true and round mouse-xcor = ([xcor] of pawns with [selected? = true]) + 1 and round mouse-ycor = ([ycor] of pawns with [selected? = true]) - 1 and mouse-down? [
+    ask pawns with [team = "white" and xcor = ([xcor] of pawns with [selected? = true]) + 1 and ycor = ([ycor] of pawns with [selected? = true])] [
+      die
+      set rightBlackEnPassent false]]
+end
+      
 
 
 

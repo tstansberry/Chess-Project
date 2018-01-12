@@ -99,7 +99,7 @@ to go
     if numberSelected = 1[
       deselectPiece
       executeMove
-      wait .1]]
+      wait .12]]
 end
 
 ;CALCULATING MOVES

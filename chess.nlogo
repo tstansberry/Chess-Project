@@ -417,192 +417,72 @@ end
 
 to calculateWhiteRookMove
   if team = "white" [
-    if([xcor] of self + 1) <= 7 and ([xcor] of self + 1) > 0 [
-    ask patch ([xcor] of self + 1) ([ycor] of self) [
-      continueWhitePath?]]
-    if([xcor] of self + 2) <= 7 and ([xcor] of self + 2) >= 0 [
-    ask patch ([xcor] of self + 2) ([ycor] of self) [
-      continueWhitePath?]]
-    if([xcor] of self + 3) <= 7 and ([xcor] of self + 3) >= 0 [
-    ask patch ([xcor] of self + 3) ([ycor] of self) [
-      continueWhitePath?]]
-    if([xcor] of self + 4) <= 7 and ([xcor] of self + 4) >= 0 [
-    ask patch ([xcor] of self + 4) ([ycor] of self ) [
-      continueWhitePath?]]
-    if([xcor] of self + 5) <= 7 and ([xcor] of self + 5) >= 0 [
-    ask patch ([xcor] of self + 5) ([ycor] of self) [
-      continueWhitePath?]]
-    if([xcor] of self + 6) <= 7 and ([xcor] of self + 6) >= 0 [
-    ask patch ([xcor] of self + 6) ([ycor] of self) [
-      continueWhitePath?]]
-    if([xcor] of self + 7) <= 7 and ([xcor] of self + 7) >= 0 [
-    ask patch ([xcor] of self + 7) ([ycor] of self) [
-      continueWhitePath?]]
+    let xvar 1
+    repeat 7 [
+      if([xcor] of self + xvar) <= 7 and ([xcor] of self + xvar) > 0 [
+        ask patch ([xcor] of self + xvar) ([ycor] of self) [
+          continueWhitePath?]]
+      set xvar xvar + 1]
+    set ahead? false
+    
+    set xvar 1
+    repeat 7 [
+      if([xcor] of self - xvar) <= 7 and ([xcor] of self - xvar) > 0 [
+        ask patch ([xcor] of self - xvar) ([ycor] of self) [
+          continueWhitePath?]]
+      set xvar xvar + 1]
     set ahead? false
 
-    if([xcor] of self - 1) <= 7 and ([xcor] of self - 1) >= 0 [
-      ask patch ([xcor] of self - 1) ([ycor] of self) [
-        continueWhitePath?]]
-    if([xcor] of self - 2) <= 7 and ([xcor] of self - 2) >= 0 [
-      ask patch ([xcor] of self - 2) ([ycor] of self) [
-        continueWhitePath?]]
-    if([xcor] of self - 3) <= 7 and ([xcor] of self - 3) >= 0 [
-      ask patch ([xcor] of self - 3) ([ycor] of self) [
-        continueWhitePath?]]
-    if([xcor] of self - 4) <= 7 and ([xcor] of self - 4) >= 0 [
-      ask patch ([xcor] of self - 4) ([ycor] of self) [
-        continueWhitePath?]]
-    if([xcor] of self - 5) <= 7 and ([xcor] of self - 5) >= 0 [
-      ask patch ([xcor] of self - 5) ([ycor] of self) [
-        continueWhitePath?]]
-    if([xcor] of self - 6) <= 7 and ([xcor] of self - 6) >= 0 [
-      ask patch ([xcor] of self - 6) ([ycor] of self) [
-        continueWhitePath?]]
-    if([xcor] of self - 7) <= 7 and ([xcor] of self - 7) >= 0 [
-      ask patch ([xcor] of self - 7) ([ycor] of self) [
-        continueWhitePath?]]
+    let yvar 1
+    repeat 7 [
+      if ([ycor] of self + yvar) <= 7 and ([ycor] of self + yvar) >= 0 [
+        ask patch ([xcor] of self) ([ycor] of self + yvar) [
+          continueWhitePath?]]
+      set yvar yvar + 1]
     set ahead? false
 
-    if ([ycor] of self + 1) <= 7 and ([ycor] of self + 1) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 1) [
-        continueWhitePath?]]
-    if ([ycor] of self + 2) <= 7 and ([ycor] of self + 2) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 2) [
-        continueWhitePath?]]
-    if ([ycor] of self + 3) <= 7 and ([ycor] of self + 3) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 3) [
-        continueWhitePath?]]
-    if ([ycor] of self + 4) <= 7 and ([ycor] of self + 4) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 4) [
-        continueWhitePath?]]
-    if ([ycor] of self + 5) <= 7 and ([ycor] of self + 5) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 5) [
-        continueWhitePath?]]
-    if ([ycor] of self + 6) <= 7 and ([ycor] of self + 6) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 6) [
-        continueWhitePath?]]
-    if ([ycor] of self + 7) <= 7 and ([ycor] of self + 7) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 7) [
-        continueWhitePath?]]
-      set ahead? false
-
-    if ([ycor] of self - 1) <= 7 and ([ycor] of self - 1) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 1) [
-        continueWhitePath?]]
-    if ([ycor] of self - 2) <= 7 and ([ycor] of self - 2) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 2) [
-        continueWhitePath?]]
-    if ([ycor] of self - 3) <= 7 and ([ycor] of self - 3) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 3) [
-        continueWhitePath?]]
-    if ([ycor] of self - 4) <= 7 and ([ycor] of self - 4) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 4) [
-        continueWhitePath?]]
-    if ([ycor] of self - 5) <= 7  and ([ycor] of self - 5) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 5) [
-        continueWhitePath?]]
-    if ([ycor] of self - 6) <= 7 and ([ycor] of self - 6) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 6) [
-        continueWhitePath?]]
-    if ([ycor] of self - 7) <= 7 and ([ycor] of self - 7) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 7) [
-        continueWhitePath?]]
-  set ahead? false]
+    set yvar 1
+    repeat 7 [
+      if ([ycor] of self - yvar) <= 7 and ([ycor] of self - yvar) >= 0 [
+        ask patch ([xcor] of self) ([ycor] of self - yvar) [
+          continueWhitePath?]]
+      set yvar yvar + 1]
+    set ahead? false]
 end
 
 to calculateBlackRookMove
   if team = "black" [
-    if([xcor] of self + 1) <= 7 and ([xcor] of self + 1) > 0 [
-    ask patch ([xcor] of self + 1) ([ycor] of self) [
-      continueBlackPath?]]
-    if([xcor] of self + 2) <= 7 and ([xcor] of self + 2) >= 0 [
-    ask patch ([xcor] of self + 2) ([ycor] of self) [
-      continueBlackPath?]]
-    if([xcor] of self + 3) <= 7 and ([xcor] of self + 3) >= 0 [
-    ask patch ([xcor] of self + 3) ([ycor] of self) [
-      continueBlackPath?]]
-    if([xcor] of self + 4) <= 7 and ([xcor] of self + 4) >= 0 [
-    ask patch ([xcor] of self + 4) ([ycor] of self ) [
-      continueBlackPath?]]
-    if([xcor] of self + 5) <= 7 and ([xcor] of self + 5) >= 0 [
-    ask patch ([xcor] of self + 5) ([ycor] of self) [
-      continueBlackPath?]]
-    if([xcor] of self + 6) <= 7 and ([xcor] of self + 6) >= 0 [
-    ask patch ([xcor] of self + 6) ([ycor] of self) [
-      continueBlackPath?]]
-    if([xcor] of self + 7) <= 7 and ([xcor] of self + 7) >= 0 [
-    ask patch ([xcor] of self + 7) ([ycor] of self) [
-      continueBlackPath?]]
+    let xvar 1
+    repeat 7 [
+      if([xcor] of self + xvar) <= 7 and ([xcor] of self + xvar) > 0 [
+        ask patch ([xcor] of self + xvar) ([ycor] of self) [
+          continueBlackPath?]]
+      set xvar xvar + 1]
+    set ahead? false
+    
+    set xvar 1
+    repeat 7 [
+      if([xcor] of self - xvar) <= 7 and ([xcor] of self - xvar) > 0 [
+        ask patch ([xcor] of self - xvar) ([ycor] of self) [
+          continueBlackPath?]]
+      set xvar xvar + 1]
     set ahead? false
 
-    if([xcor] of self - 1) <= 7 and ([xcor] of self - 1) >= 0 [
-      ask patch ([xcor] of self - 1) ([ycor] of self) [
-        continueBlackPath?]]
-    if([xcor] of self - 2) <= 7 and ([xcor] of self - 2) >= 0 [
-      ask patch ([xcor] of self - 2) ([ycor] of self) [
-        continueBlackPath?]]
-    if([xcor] of self - 3) <= 7 and ([xcor] of self - 3) >= 0 [
-      ask patch ([xcor] of self - 3) ([ycor] of self) [
-        continueBlackPath?]]
-    if([xcor] of self - 4) <= 7 and ([xcor] of self - 4) >= 0 [
-      ask patch ([xcor] of self - 4) ([ycor] of self) [
-        continueBlackPath?]]
-    if([xcor] of self - 5) <= 7 and ([xcor] of self - 5) >= 0 [
-      ask patch ([xcor] of self - 5) ([ycor] of self) [
-        continueBlackPath?]]
-    if([xcor] of self - 6) <= 7 and ([xcor] of self - 6) >= 0 [
-      ask patch ([xcor] of self - 6) ([ycor] of self) [
-        continueBlackPath?]]
-    if([xcor] of self - 7) <= 7 and ([xcor] of self - 7) >= 0 [
-      ask patch ([xcor] of self - 7) ([ycor] of self) [
-        continueBlackPath?]]
+    let yvar 1
+    repeat 7 [
+      if ([ycor] of self + yvar) <= 7 and ([ycor] of self + yvar) >= 0 [
+        ask patch ([xcor] of self) ([ycor] of self + yvar) [
+          continueBlackPath?]]
+      set yvar yvar + 1]
     set ahead? false
 
-    if ([ycor] of self + 1) <= 7 and ([ycor] of self + 1) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 1) [
-        continueBlackPath?]]
-    if ([ycor] of self + 2) <= 7 and ([ycor] of self + 2) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 2) [
-       continueBlackPath?]]
-    if ([ycor] of self + 3) <= 7 and ([ycor] of self + 3) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 3) [
-        continueBlackPath?]]
-    if ([ycor] of self + 4) <= 7 and ([ycor] of self + 4) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 4) [
-        continueBlackPath?]]
-    if ([ycor] of self + 5) <= 7 and ([ycor] of self + 5) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 5) [
-        continueBlackPath?]]
-    if ([ycor] of self + 6) <= 7 and ([ycor] of self + 6) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 6) [
-        continueBlackPath?]]
-    if ([ycor] of self + 7) <= 7 and ([ycor] of self + 7) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self + 7) [
-        continueBlackPath?]]
-      set ahead? false
-
-    if ([ycor] of self - 1) <= 7 and ([ycor] of self - 1) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 1) [
-        continueBlackPath?]]
-    if ([ycor] of self - 2) <= 7 and ([ycor] of self - 2) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 2) [
-        continueBlackPath?]]
-    if ([ycor] of self - 3) <= 7 and ([ycor] of self - 3) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 3) [
-        continueBlackPath?]]
-    if ([ycor] of self - 4) <= 7 and ([ycor] of self - 4) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 4) [
-        continueBlackPath?]]
-    if ([ycor] of self - 5) <= 7  and ([ycor] of self - 5) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 5) [
-        continueBlackPath?]]
-    if ([ycor] of self - 6) <= 7 and ([ycor] of self - 6) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 6) [
-        continueBlackPath?]]
-    if ([ycor] of self - 7) <= 7 and ([ycor] of self - 7) >= 0 [
-      ask patch ([xcor] of self) ([ycor] of self - 7) [
-        continueBlackPath?]]
-  set ahead? false]
+    set yvar 1
+    repeat 7 [
+      if ([ycor] of self - yvar) <= 7 and ([ycor] of self - yvar) >= 0 [
+        ask patch ([xcor] of self) ([ycor] of self - yvar) [
+          continueBlackPath?]]
+      set yvar yvar + 1]
+    set ahead? false]
 end
 
 to continueWhitePath?

@@ -524,9 +524,9 @@ to executeMove
         setxy x y
         set movedyet? true
         set timesMoved timesMoved + 1]
-      deselectAllPieces
       executeCastle
       executeEnPassent
+      deselectAllPieces
       increaseTurn
     ifelse setMove = "white"
     [set timerblack timerblack + increment]

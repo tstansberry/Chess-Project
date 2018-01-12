@@ -93,12 +93,13 @@ end
 
 to go
   every .031 [
-    selectPiece
-    wait .014
-    deselectPiece
-    wait .014
-    executeMove
-    wait .014]
+    if numberSelected = 0 [
+      selectPiece
+      wait 0.14]
+    if numberSelected = 1[
+      deselectPiece
+      executeMove
+      wait .1]]
 end
 
 ;CALCULATING MOVES

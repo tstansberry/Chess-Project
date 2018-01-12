@@ -763,22 +763,38 @@ to enPassentWhite
 end
 
 to executeEnPassent
-  if leftWhiteEnPassent = true and round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) - 1 and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) - 1 and mouse-down? [
-    ask pawns with [team = "black" and xcor = ([xcor] of one-of pawns with [selected? = true]) - 1 and ycor = ([ycor] of one-of pawns with [selected? = true])] [
-      die
-      set leftWhiteEnPassent false]]
-  if rightWhiteEnPassent = true and round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) + 1 and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) + 1 and mouse-down? [
-    ask pawns with [team = "black" and xcor = ([xcor] of one-of pawns with [selected? = true]) + 1 and ycor = ([ycor] of one-of pawns with [selected? = true])] [
-      die
-      set rightWhiteEnPassent false]]
-  if leftBlackEnPassent = true and round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) - 1 and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) - 1 and mouse-down? [
-    ask pawns with [team = "white" and xcor = ([xcor] of one-of pawns with [selected? = true]) - 1 and ycor = ([ycor] of one-of pawns with [selected? = true])] [
-      die
-      set leftBlackEnPassent false]]
-  if rightBlackEnPassent = true and round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) + 1 and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) - 1 and mouse-down? [
-    ask pawns with [team = "white" and xcor = ([xcor] of one-of pawns with [selected? = true]) + 1 and ycor = ([ycor] of one-of pawns with [selected? = true])] [
-      die
-      set rightBlackEnPassent false]]
+  if leftWhiteEnPassent = true [
+    if round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) and mouse-down? [
+      ask pawns with [team = "black" and xcor = ([xcor] of one-of pawns with [selected? = true]) and ycor = ([ycor] of one-of pawns with [selected? = true]) - 1] [
+        die
+        set leftWhiteEnPassent false
+        set rightWhiteEnPassent false
+        set leftBlackEnPassent false
+        set rightBlackEnPassent false]]]
+  if rightWhiteEnPassent = true [
+    if round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) and mouse-down? [
+      ask pawns with [team = "black" and xcor = ([xcor] of one-of pawns with [selected? = true]) and ycor = ([ycor] of one-of pawns with [selected? = true]) - 1] [
+        die
+        set leftWhiteEnPassent false
+        set rightWhiteEnPassent false
+        set leftBlackEnPassent false
+        set rightBlackEnPassent false]]]
+  if leftBlackEnPassent = true [ 
+    if round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) and mouse-down? [
+      ask pawns with [team = "white" and xcor = ([xcor] of one-of pawns with [selected? = true]) and ycor = ([ycor] of one-of pawns with [selected? = true]) + 1] [
+        die
+        set leftWhiteEnPassent false
+        set rightWhiteEnPassent false
+        set leftBlackEnPassent false
+        set rightBlackEnPassent false]]]
+  if rightBlackEnPassent = true [
+    if round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) and mouse-down? [
+      ask pawns with [team = "white" and xcor = ([xcor] of one-of pawns with [selected? = true]) and ycor = ([ycor] of one-of pawns with [selected? = true]) + 1] [
+        die
+        set leftWhiteEnPassent false
+        set rightWhiteEnPassent false
+        set leftBlackEnPassent false
+        set rightBlackEnPassent false]]]
 end
 
 

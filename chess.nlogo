@@ -1,6 +1,6 @@
 turtles-own [team movedyet? piecename selected? timesMoved]
 patches-own [original-color]
-globals [numberSelected turn ahead? green? rightWhiteRook leftWhiteRook rightBlackRook leftBlackRook timerwhite timerblack leftWhiteEnPassent rightWhiteEnPassent leftBlackEnPassent rightBlackEnPassent]
+globals [numberSelected turn ahead? green? rightWhiteRook leftWhiteRook rightBlackRook leftBlackRook timerwhite timerblack leftWhiteEnPassent rightWhiteEnPassent leftBlackEnPassent rightBlackEnPassent whiteScore blackScore]
 breed [pawns pawn]
 breed [rooks rook]
 breed [knights knight]
@@ -518,6 +518,7 @@ to executeMove
         set x pxcor
         set y pycor
         ask turtles-here [
+          chesspoint
           die]]]
     if green? = true [
       ask turtles with [selected? = true] [
@@ -534,6 +535,32 @@ to executeMove
     [set timerwhite timerwhite + increment]]]
   endGame
   pawnPromotion
+end
+
+to chesspoint
+  if mouse-down? and team = "white"[
+    if count turtles-here with [shape = "chess pawn"] > 0
+    [set blackscore blackscore + 1]
+    if count turtles-here with [shape = "chess bishop"] > 0
+      [set blackscore blackscore + 3]
+    if count turtles-here with [shape = "chess knight"] > 0
+        [set blackscore blackscore + 3]
+    if count turtles-here with [shape = "chess rook"] > 0
+      [set blackscore blackscore + 5]
+    if count turtles-here with [shape = "chess queens"] > 0
+      [set blackscore blackscore + 9]]
+
+  if mouse-down? and team = "black"[
+    if count turtles-here with [shape = "chess pawn"]> 0
+    [set whitescore whitescore + 1]
+    if count turtles-here with [shape = "chess bishop"] > 0
+      [set whitescore whitescore + 3]
+    if count turtles-here with [shape = "chess knight"] > 0
+        [set whitescore whitescore + 3]
+    if count turtles-here with [shape = "chess rook"] > 0
+      [set whitescore whitescore + 5]
+    if count turtles-here with [shape = "chess queen"] > 0
+      [set whitescore whitescore + 9]]
 end
 
 to deselectAllPieces

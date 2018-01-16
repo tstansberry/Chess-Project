@@ -532,6 +532,7 @@ to executeMove
     [set timerblack timerblack + increment]
     [set timerwhite timerwhite + increment]]]
   pawnPromotion
+  resetEnPassent
 end
 
 to deselectAllPieces
@@ -797,8 +798,12 @@ to executeEnPassent
         set rightBlackEnPassent false]]]
 end
 
-
-
+to resetEnPassent
+  set leftWhiteEnPassent false
+  set rightWhiteEnPassent false
+  set leftBlackEnPassent false
+  set rightBlackEnPassent false
+end
 
 
 @#$#@#$#@

@@ -577,12 +577,14 @@ to whiteCastle
   ask kings with [team = "white"] [
     if movedyet? != true [
       set king? true]]
-  ask rook 16 [
-    if movedyet? != true [
-      set leftRook? true]]
-  ask rook 17 [
-    if movedyet? != true [
-      set rightRook? true]]
+   if count rooks with [xcor = 0 and ycor = 0] = 1 [
+    ask rook 16 [
+      if movedyet? != true [
+        set leftRook? true]]]
+  if count rooks with [xcor = 7 and ycor = 0] = 1 [
+    ask rook 17 [
+      if movedyet? != true [
+        set rightRook? true]]]
 
   if king? and leftRook? [
     ask patch 1 0 [
@@ -625,12 +627,14 @@ to blackCastle
   ask kings with [team = "black"] [
     if movedyet? != true [
       set king? true]]
-  ask rook 18 [
-    if movedyet? != true [
-      set leftRook? true]]
-  ask rook 19 [
-    if movedyet? != true [
-      set rightRook? true]]
+  if count rooks with [xcor = 0 and ycor = 7] = 1 [
+    ask rook 18 [
+      if movedyet? != true [
+        set leftRook? true]]]
+  if count rooks with [xcor = 7 and ycor = 7] = 1 [
+    ask rook 19 [
+      if movedyet? != true [
+        set rightRook? true]]]
 
   if king? and leftRook? [
     ask patch 1 7 [

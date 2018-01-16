@@ -420,7 +420,7 @@ to calculateWhiteRookMove
   if team = "white" [
     let xvar 1
     repeat 7 [
-      if([xcor] of self + xvar) <= 7 and ([xcor] of self + xvar) > 0 [
+      if([xcor] of self + xvar) <= 7 and ([xcor] of self + xvar) >= 0 [
         ask patch ([xcor] of self + xvar) ([ycor] of self) [
           continueWhitePath?]]
       set xvar xvar + 1]
@@ -428,7 +428,7 @@ to calculateWhiteRookMove
     
     set xvar 1
     repeat 7 [
-      if([xcor] of self - xvar) <= 7 and ([xcor] of self - xvar) > 0 [
+      if([xcor] of self - xvar) <= 7 and ([xcor] of self - xvar) >= 0 [
         ask patch ([xcor] of self - xvar) ([ycor] of self) [
           continueWhitePath?]]
       set xvar xvar + 1]
@@ -455,7 +455,7 @@ to calculateBlackRookMove
   if team = "black" [
     let xvar 1
     repeat 7 [
-      if([xcor] of self + xvar) <= 7 and ([xcor] of self + xvar) > 0 [
+      if([xcor] of self + xvar) <= 7 and ([xcor] of self + xvar) >= 0 [
         ask patch ([xcor] of self + xvar) ([ycor] of self) [
           continueBlackPath?]]
       set xvar xvar + 1]
@@ -463,7 +463,7 @@ to calculateBlackRookMove
     
     set xvar 1
     repeat 7 [
-      if([xcor] of self - xvar) <= 7 and ([xcor] of self - xvar) > 0 [
+      if([xcor] of self - xvar) <= 7 and ([xcor] of self - xvar) >= 0 [
         ask patch ([xcor] of self - xvar) ([ycor] of self) [
           continueBlackPath?]]
       set xvar xvar + 1]

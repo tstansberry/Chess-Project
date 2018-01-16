@@ -526,13 +526,14 @@ to executeMove
         set timesMoved timesMoved + 1]
       executeCastle
       executeEnPassent
+      resetEnPassent
       deselectAllPieces
       increaseTurn
     ifelse setMove = "white"
     [set timerblack timerblack + increment]
     [set timerwhite timerwhite + increment]]]
+  endGame
   pawnPromotion
-  resetEnPassent
 end
 
 to deselectAllPieces
@@ -803,6 +804,29 @@ to resetEnPassent
   set rightWhiteEnPassent false
   set leftBlackEnPassent false
   set rightBlackEnPassent false
+end
+
+;CALCULATING CHECKMATE
+to calculateWhiteCheck
+  ask turtles with [team = "black"] [
+    calculateMoves]
+  ask patches with [pcolor = green] [
+    set kingsMove false]
+  ask patches [
+    set pcolor original-color]
+  ask kings with [team = "white"] [
+    calculateWhiteKingMove]
+  ask patches [
+    set kingsMove true]
+end
+
+to endGame
+  if count kings with [team = "white"] = 0 [
+    user-message (word "Black Wins! Play Again?")
+    setup]
+  if count kings with [team = "black"] = 0 [
+    user-message (word "White Wins! Play Again?")
+    setup]
 end
 
 

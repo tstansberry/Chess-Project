@@ -17,7 +17,7 @@ to setup
 
   ;BOARD
   ask patches [
-    ifelse ((pxcor + pycor) mod 2 = 0)[set pcolor white][set pcolor gray]
+    ifelse ((pxcor + pycor) mod 2 = 0)[set pcolor gray][set pcolor white]
     set original-color pcolor]
   set turn 0
 
@@ -45,12 +45,12 @@ to setup
   cro 1 [set color black set heading 180 set xcor 5 set ycor 7 set breed bishops]
   ;KINGS
   set-default-shape kings "chess king"
-  cro 1 [set color 49 set heading 0 set xcor 3 set breed kings]
-  cro 1 [set color black set heading 180 set xcor 3 set ycor 7 set breed kings]
+  cro 1 [set color 49 set heading 0 set xcor 4 set breed kings]
+  cro 1 [set color black set heading 180 set xcor 4 set ycor 7 set breed kings]
   ;QUEENS
   set-default-shape queens "chess queen"
-  cro 1 [set color 49 set heading 0 set xcor 4 set breed queens]
-  cro 1 [set color black set heading 180 set xcor 4 set ycor 7 set breed queens]
+  cro 1 [set color 49 set heading 0 set xcor 3 set breed queens]
+  cro 1 [set color black set heading 180 set xcor 3 set ycor 7 set breed queens]
 
   ask turtles [
     if color = black [
@@ -593,22 +593,22 @@ to whiteCastle
     ask patch 2 0 [
       if count turtles-here = 0 [
         set check2 true]]
-    if check1 and check2 [
-      ask patch 1 0 [
+    ask patch 3 0 [
+      if count turtles-here = 0 [
+        set check3 true]]
+    if check1 and check2 and check3[
+      ask patch 2 0 [
         set pcolor green
         set leftWhiteRook true]]]
 
   if king? and rightRook? [
-    ask patch 4 0 [
-      if count turtles-here = 0 [
-        set check3 true]]
     ask patch 5 0 [
       if count turtles-here = 0 [
         set check4 true]]
     ask patch 6 0 [
       if count turtles-here = 0 [
         set check5 true]]
-    if check3 and check4 and check5 [
+    if check4 and check5 [
       ask patch 6 0 [
         set pcolor green
         set rightWhiteRook true]]]
@@ -643,22 +643,22 @@ to blackCastle
     ask patch 2 7 [
       if count turtles-here = 0 [
         set check2 true]]
-    if check1 and check2 [
-      ask patch 1 7 [
+    ask patch 3 7 [
+      if count turtles-here = 0 [
+        set check3 true]]
+    if check1 and check2 and check3[
+      ask patch 2 7 [
         set pcolor green
         set leftBlackRook true]]]
 
   if king? and rightRook? [
-    ask patch 4 7 [
-      if count turtles-here = 0 [
-        set check3 true]]
     ask patch 5 7 [
       if count turtles-here = 0 [
         set check4 true]]
     ask patch 6 7 [
       if count turtles-here = 0 [
         set check5 true]]
-    if check3 and check4 and check5 [
+    if check4 and check5 [
       ask patch 6 7 [
         set pcolor green
         set rightBlackRook true]]]
@@ -672,9 +672,9 @@ to executeCastle
     set leftWhiteRook false
     set rightBlackRook false
     set leftBlackRook false]
-  if leftWhiteRook = true and round mouse-xcor = 1 and round mouse-ycor = 0 and mouse-down?[
+  if leftWhiteRook = true and round mouse-xcor = 2 and round mouse-ycor = 0 and mouse-down?[
     ask rook 16 [
-      setxy 2 0]
+      setxy 3 0]
     set rightWhiteRook false
     set leftWhiteRook false
     set rightBlackRook false
@@ -686,9 +686,9 @@ to executeCastle
     set leftWhiteRook false
     set rightBlackRook false
     set leftBlackRook false]
-  if leftBlackRook = true and round mouse-xcor = 1 and round mouse-ycor = 7 and mouse-down?[
+  if leftBlackRook = true and round mouse-xcor = 2 and round mouse-ycor = 7 and mouse-down?[
     ask rook 18 [
-      setxy 2 7]
+      setxy 3 7]
     set rightWhiteRook false
     set leftWhiteRook false
     set rightBlackRook false

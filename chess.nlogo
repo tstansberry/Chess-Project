@@ -613,7 +613,7 @@ to whiteCastle
       if movedyet? != true [
         set rightRook? true]]]
 
-  if king? and leftRook? [
+  if king? and leftRook? and setMove = "white" [
     ask patch 1 0 [
       if count turtles-here = 0 [
         set check1 true]]
@@ -628,7 +628,7 @@ to whiteCastle
         set pcolor green
         set leftWhiteRook true]]]
 
-  if king? and rightRook? [
+  if king? and rightRook? and setMove = "white"[
     ask patch 5 0 [
       if count turtles-here = 0 [
         set check4 true]]
@@ -663,7 +663,7 @@ to blackCastle
       if movedyet? != true [
         set rightRook? true]]]
 
-  if king? and leftRook? [
+  if king? and leftRook? and setMove = "black" [
     ask patch 1 7 [
       if count turtles-here = 0 [
         set check1 true]]
@@ -678,7 +678,7 @@ to blackCastle
         set pcolor green
         set leftBlackRook true]]]
 
-  if king? and rightRook? [
+  if king? and rightRook? and setMove = "black" [
     ask patch 5 7 [
       if count turtles-here = 0 [
         set check4 true]]

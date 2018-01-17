@@ -547,7 +547,7 @@ to chesspoint
         [set blackscore blackscore + 3]
     if count turtles-here with [shape = "chess rook"] > 0
       [set blackscore blackscore + 5]
-    if count turtles-here with [shape = "chess queens"] > 0
+    if count turtles-here with [shape = "chess queen"] > 0
       [set blackscore blackscore + 9]]
 
   if mouse-down? and team = "black"[

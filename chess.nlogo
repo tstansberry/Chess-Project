@@ -799,6 +799,7 @@ to executeEnPassent
   if leftWhiteEnPassent = true [
     if round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) and mouse-down? [
       ask pawns with [team = "black" and xcor = ([xcor] of one-of pawns with [selected? = true]) and ycor = ([ycor] of one-of pawns with [selected? = true]) - 1] [
+        set whitescore whitescore + 1
         die
         set leftWhiteEnPassent false
         set rightWhiteEnPassent false
@@ -807,6 +808,7 @@ to executeEnPassent
   if rightWhiteEnPassent = true [
     if round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) and mouse-down? [
       ask pawns with [team = "black" and xcor = ([xcor] of one-of pawns with [selected? = true]) and ycor = ([ycor] of one-of pawns with [selected? = true]) - 1] [
+        set whitescore whitescore + 1
         die
         set leftWhiteEnPassent false
         set rightWhiteEnPassent false
@@ -815,6 +817,7 @@ to executeEnPassent
   if leftBlackEnPassent = true [ 
     if round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) and mouse-down? [
       ask pawns with [team = "white" and xcor = ([xcor] of one-of pawns with [selected? = true]) and ycor = ([ycor] of one-of pawns with [selected? = true]) + 1] [
+        set blackscore blackscore + 1
         die
         set leftWhiteEnPassent false
         set rightWhiteEnPassent false
@@ -823,6 +826,7 @@ to executeEnPassent
   if rightBlackEnPassent = true [
     if round mouse-xcor = ([xcor] of one-of pawns with [selected? = true]) and round mouse-ycor = ([ycor] of one-of pawns with [selected? = true]) and mouse-down? [
       ask pawns with [team = "white" and xcor = ([xcor] of one-of pawns with [selected? = true]) and ycor = ([ycor] of one-of pawns with [selected? = true]) + 1] [
+        set blackscore blackscore + 1
         die
         set leftWhiteEnPassent false
         set rightWhiteEnPassent false
